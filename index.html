@@ -202,17 +202,154 @@ em { color: var(--muted); }
   .masthead-meta { text-align: left; }
 }
 
-/* Single panel (Commercials) */
-.panel { padding-top: 24px; }
-.panel-head { margin-bottom: 20px; }
-.panel-head h1 { margin: 0 0 4px; }
-
 /* Edit mode — Ctrl+Shift+E. Hidden controls are out of layout entirely. */
 body:not(.editing) .edit-only { display: none !important; }
 .toolbar .kbd {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
   border: 1px solid var(--hair); border-radius: 3px; padding: 1px 5px;
   margin-left: 4px; color: var(--ink);
+}
+/* Tabs */
+.tabs {
+  display: flex; gap: 4px; margin: 22px 0 0;
+  border-bottom: 1px solid var(--hair);
+}
+.tab {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; cursor: pointer;
+  padding: 11px 20px; border: none; background: none;
+  color: var(--muted); border-bottom: 3px solid transparent;
+  margin-bottom: -1px; transition: color 0.15s ease, border-color 0.15s ease;
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+.panel { display: none; padding-top: 22px; }
+.panel.is-active { display: block; }
+.panel-head { margin-bottom: 20px; }
+.panel-head h1 { margin: 0 0 4px; }
+
+/* Metric row */
+.metric-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin: 0 0 18px;
+}
+.metric {
+  border: 1px solid var(--hair); border-left: 3px solid var(--brand);
+  border-radius: 3px; padding: 14px 16px;
+}
+.metric-num {
+  font-family: 'Oswald', Impact, sans-serif; font-weight: 700;
+  font-size: 30px; line-height: 1; color: var(--brand); margin-bottom: 7px;
+}
+.metric-unit { font-size: 19px; }
+.metric-label {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink);
+}
+.metric-sub {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Channel cards — same rhythm as the asset rows on the commercials tab */
+.channel-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin-bottom: 26px;
+}
+.channel {
+  border: 1px solid var(--hair); border-radius: 3px; padding: 14px 16px 16px;
+}
+/* The primary-channels card carries more copy than the strategy cards and
+   would otherwise leave an orphan on its own row. */
+/* Two linear feeds only, so the track matches the card count rather than
+   leaving an empty third column. */
+.channel-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.channel-wide { grid-column: 1 / -1; border-left: 3px solid var(--brand); }
+.channel-wide ul { columns: 2; column-gap: 26px; }
+.channel-wide li { break-inside: avoid; }
+.channel-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 6px;
+}
+.channel h4 {
+  font-family: 'Oswald', Impact, sans-serif; font-weight: 600; font-size: 14px;
+  letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 8px;
+}
+
+.demo-block { margin: 0 0 22px; }
+.demo-block h4 {
+  font-family: 'Oswald', Impact, sans-serif; font-weight: 600; font-size: 14px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin: 0 0 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--hair);
+}
+.demo-block .metric-row { margin-bottom: 12px; }
+.demo-block ul { margin: 0; }
+.demo-block li { margin-bottom: 4px; }
+
+.chart { margin: 0 0 26px; }
+.chart svg {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--hair); border-radius: 3px;
+  background: #fbfbfc;
+}
+/* Chart type and colour are the document's, not the source deck's: brand
+   green for MVP, document ink for PFL, and the overlap falls out of the
+   two fills rather than being a third colour. */
+.ch-title { font-family: 'Oswald', Impact, sans-serif; font-weight: 700;
+  font-size: 27px; fill: var(--ink); }
+.ch-sub { font-family: 'Barlow', sans-serif; font-size: 14px; fill: var(--muted); }
+.ch-key { font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 17px; letter-spacing: 0.14em; }
+.ch-key-pfl { fill: #2b3140; }
+.ch-key-mvp { fill: var(--brand); }
+.ch-pfl { fill: #2b3140; fill-opacity: 0.88; }
+.ch-mvp { fill: var(--brand); fill-opacity: 0.80; }
+.ch-big { font-family: 'Oswald', Impact, sans-serif; font-weight: 700;
+  font-size: 40px; text-anchor: middle; }
+.ch-mid { font-family: 'Oswald', Impact, sans-serif; font-weight: 700;
+  font-size: 27px; text-anchor: middle; }
+.ch-small { font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  text-anchor: middle; }
+.ch-on-fill { fill: #ffffff; }
+.ch-rule { stroke: var(--hair); stroke-width: 1; }
+.ch-stat { font-family: 'Oswald', Impact, sans-serif; font-weight: 700;
+  font-size: 62px; fill: var(--ink); }
+.ch-stat-alt { fill: var(--brand); }
+.ch-note { font-family: 'Barlow', sans-serif; font-size: 15px; fill: var(--muted); }
+.ch-source { font-family: 'Barlow', sans-serif; font-size: 11px; fill: #9aa1ad; }
+.chart figcaption {
+  margin-top: 9px; font-size: 12px; color: var(--muted); max-width: 62ch;
+}
+
+@media print {
+  .tabs { display: none !important; }
+  .chart { break-inside: avoid; }
+  .chart figcaption { font-size: 8pt; }
+  /* A PDF should carry the whole document, not just whichever tab is open. */
+  .panel { display: block !important; }
+  .panel + .panel { break-before: page; padding-top: 0; }
+  .metric-row, .channel-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .channel-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .metric, .channel, .demo-block { break-inside: avoid; padding: 8px 10px; }
+  .demo-block { padding: 0; }
+  .demo-block h4 { font-size: 9.6pt; }
+  .metric-num { font-size: 20pt; }
+  .metric-unit { font-size: 13pt; }
+  .metric-label { font-size: 8pt; }
+  .metric-sub { font-size: 7.4pt; }
+  .channel h4 { font-size: 9.6pt; }
+  .channel-tag { font-size: 7.4pt; }
+}
+@media (max-width: 720px) {
+  .metric-row, .channel-grid { grid-template-columns: 1fr; }
+  .channel-wide ul { columns: 1; }
+  .tabs { overflow-x: auto; }
 }
 </style>
 </head>
@@ -239,9 +376,277 @@ body:not(.editing) .edit-only { display: none !important; }
     </div>
   </div>
 
+  <div class="tabs no-print" role="tablist">
+    <button type="button" class="tab" data-tab="audience" role="tab" aria-selected="true">Audience Demographics</button>
+    <button type="button" class="tab" data-tab="commercials" role="tab" aria-selected="false">Commercials</button>
+  </div>
 
+  <section class="panel is-active" data-tab="audience">
+    <div class="panel-head">
+      <h1>Audience <span>Demographics</span></h1>
+      <div class="standfirst">Focused on the global market.</div>
+    </div>
+      <h3 class="terms-section-title">Audience Overview
+        <span class="dist-section-sub">Global fan data · August 2026</span></h3>
+      <div class="demo-block">
+        <h4>Who They Are</h4>
+        <div class="metric-row">
+          <div class="metric">
+          <div class="metric-num">70<span class="metric-unit">%</span></div>
+          <div class="metric-label">Male</div>
+          <div class="metric-sub">of the global fanbase</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">62<span class="metric-unit">%</span></div>
+          <div class="metric-label">Under 45</div>
+          <div class="metric-sub">18–24 index 184</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">22<span class="metric-unit">%</span></div>
+          <div class="metric-label">Aged 55+</div>
+          <div class="metric-sub">vs 43% nationally · index 51</div>
+        </div>
+        </div>
+        <ul>
+            <li>Youngest cohorts skew hardest — 18–24 at index 184, 25–34 at index 157</li>
+            <li>55% work full time (index 128); students index 160</li>
+            <li>Education at or above national average across the board — no downmarket skew</li>
+        </ul>
+      </div>
 
-  <section class="panel">
+      <div class="demo-block">
+        <h4>Betting Behaviour</h4>
+        <div class="metric-row">
+          <div class="metric">
+          <div class="metric-num">396</div>
+          <div class="metric-label">Online betting index</div>
+          <div class="metric-sub">10.1% vs 2.5% of all adults</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">7<span class="metric-unit">%</span></div>
+          <div class="metric-label">Do not gamble at all</div>
+          <div class="metric-sub">vs 23% nationally · index 30</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">243</div>
+          <div class="metric-label">CASINO interest index</div>
+          <div class="metric-sub">RETAIL 112, DEVICE 255</div>
+        </div>
+        </div>
+        <ul>
+            <li><strong>The single strongest commercial index in the entire study</strong> — 10.1% placed a bet with an online bookmaker in the last 12 months</li>
+            <li>EuroMillions index 209, national weekly lottery index 171, scratchcards index 160, in-person bet index 170</li>
+        </ul>
+      </div>
+
+      <div class="demo-block">
+        <h4>Activation Implications</h4>
+        <div class="metric-row">
+          <div class="metric">
+          <div class="metric-num">207</div>
+          <div class="metric-label">Sports mobile app index</div>
+          <div class="metric-sub">social for sport 192</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">81<span class="metric-unit">%</span></div>
+          <div class="metric-label">Second-screen on mobile</div>
+          <div class="metric-sub">laptop index 183</div>
+        </div>
+          <div class="metric">
+          <div class="metric-num">73<span class="metric-unit">%</span></div>
+          <div class="metric-label">Likely to attend live</div>
+          <div class="metric-sub">index 146 / 211</div>
+        </div>
+        </div>
+        <ul>
+            <li>Mobile-first — online live streams index 183, sports podcasts</li>
+            <li>Second-screening is near-universal, so live in-play betting behaviour is already there</li>
+            <li>8+ hours daily smartphone screentime</li>
+            <li>Ticketing, hospitality and on-site activation all have a real audience to sell to</li>
+        </ul>
+      </div>
+
+      <figure class="chart">
+        <svg viewBox="0 0 1040 430" role="img" aria-label="Venn diagram: PFL reaches 3.5 million viewers only, MVP 3.2 million only, 1.5 million see both">
+          <text class="ch-title" x="30" y="44">PFL and MVP reach different people</text>
+          <text class="ch-sub" x="30" y="72">8.2 million viewers across the two properties in 2026.</text>
+
+          <text class="ch-key ch-key-pfl" x="238" y="132">PFL</text>
+          <text class="ch-key ch-key-mvp" x="470" y="132">MVP</text>
+
+          <circle class="ch-pfl" cx="300" cy="268" r="112"></circle>
+          <circle class="ch-mvp" cx="424" cy="268" r="108"></circle>
+
+          <text class="ch-big ch-on-fill" x="243" y="272">3.5M</text>
+          <text class="ch-small ch-on-fill" x="243" y="296">PFL only</text>
+          <text class="ch-mid ch-on-fill" x="362" y="270">1.5M</text>
+          <text class="ch-small ch-on-fill" x="362" y="292">both</text>
+          <text class="ch-big ch-on-fill" x="482" y="272">3.2M</text>
+          <text class="ch-small ch-on-fill" x="482" y="296">MVP only</text>
+
+          <line class="ch-rule" x1="620" y1="140" x2="620" y2="372"></line>
+
+          <text class="ch-stat" x="660" y="212">82%</text>
+          <text class="ch-note" x="662" y="240">of the combined audience is additive</text>
+          <text class="ch-stat ch-stat-alt" x="660" y="318">6.7M</text>
+          <text class="ch-note" x="662" y="346">have seen one property, not the other</text>
+
+          <text class="ch-source" x="30" y="416">Source: Nielsen NPower R&amp;F Duplication Report. Persons 2+, Live+SD, 1-minute qualifier. Unified sample 25 Feb to 22 Aug 2026. ESPN and ESPN2.</text>
+        </svg>
+        <figcaption>Only 1.5m viewers see both properties — 82% of the
+          combined audience is additive, with 6.7m reached by one property and
+          not the other.</figcaption>
+      </figure>
+
+      <h3 class="terms-section-title">Jake Paul Audience
+        <span class="dist-section-sub">Instagram · Demographics Pro, Sep 2026</span></h3>
+      <div class="metric-row">
+        <div class="metric">
+          <div class="metric-num">28.1<span class="metric-unit">m</span></div>
+          <div class="metric-label">Followers analysed</div>
+          <div class="metric-sub">5× PFL and MVP combined</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">31<span class="metric-unit">%</span></div>
+          <div class="metric-label">Aged 20–24</div>
+          <div class="metric-sub">2.6× the Instagram average</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">86<span class="metric-unit">%</span></div>
+          <div class="metric-label">Are single</div>
+          <div class="metric-sub">vs 38% on PFL</div>
+        </div>
+      </div>
+      <div class="channel-grid">
+        <div class="channel">
+          <div class="channel-tag">Profile</div>
+          <h4>Who They Are</h4>
+          <ul>
+              <li>55% female — the only one of the three properties that skews female</li>
+              <li>Largest age group 20–24 at 31%, against 35–39 for both PFL and MVP</li>
+              <li>67% US based; 7% at $75k+ income (index 1.3)</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">Sport affinity</div>
+          <h4>Loosely Attached</h4>
+          <ul>
+              <li>Only 9% follow MMA (index 1.4), against 57% on PFL — <strong>this audience is here for the person, not the sport</strong></li>
+              <li>Boxing 10% (index 1.8), wrestling 9% (index 2.4)</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">Brands &amp; interests</div>
+          <h4>Gaming And Social</h4>
+          <ul>
+              <li>TikTok 28% (index 6.5), YouTube 27% (index 3.4), Kylie Cosmetics 23% (index 3.6)</li>
+              <li>Fortnite 15% (index 9.6), PlayStation 15%, Xbox 11%, Battle Royale games 18%</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="terms-section-title">Broadcast Distribution
+        <span class="dist-section-sub">2026 viewership · Global broadcast</span></h3>
+      <div class="metric-row">
+        <div class="metric">
+          <div class="metric-num">420<span class="metric-unit">k</span></div>
+          <div class="metric-label">Average unique viewers</div>
+          <div class="metric-sub">per fight card</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">127<span class="metric-unit">min</span></div>
+          <div class="metric-label">Average watch time</div>
+          <div class="metric-sub">per viewer</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">3</div>
+          <div class="metric-label">Events</div>
+          <div class="metric-sub">boxing &amp; mma&nbsp;</div>
+        </div>
+      </div>
+      <div class="channel-grid">
+        <div class="channel">
+          <div class="channel-tag">BOXING Events&nbsp;</div>
+          <h4>Sky Sports</h4>
+          <ul>
+              <li>All broadcast integrations for MVP Events delivered via the Sky Sports feed</li>
+              <li>Banner overlays, sponsor graphics and on-screen promos across all Sky Sports coverage</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">mma Events&nbsp;</div>
+          <h4>talkSPORT</h4>
+          <ul>
+              <li>All broadcast integrations for MMA Events delivered via the talkSPORT feed</li>
+              <li>Banner overlays, sponsor graphics and on-screen promos across all talkSPORT coverage</li>
+              <li>Distributed globally</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">ALL Events · Digital feed</div>
+          <h4>YouTube</h4>
+          <ul>
+              <li>Live and on-demand MMA coverage carried globally across YouTube</li>
+              <li>Same co-branded overlay and sponsor-graphic package as the linear feed</li>
+              <li>Distributed globally</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="terms-section-title">Social Distribution
+        <span class="dist-section-sub">Expected reach · Global&nbsp;</span></h3>
+      <div class="metric-row">
+        <div class="metric">
+          <div class="metric-num">2.9<span class="metric-unit">m</span></div>
+          <div class="metric-label">Followers reached</div>
+          <div class="metric-sub">across global channels</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">3<span class="metric-unit">+</span></div>
+          <div class="metric-label">Posts per card</div>
+          <div class="metric-sub">presented by Cloudbet</div>
+        </div>
+        <div class="metric">
+          <div class="metric-num">CTA</div>
+          <div class="metric-label">Direct to sign-up</div>
+          <div class="metric-sub">link in every post</div>
+        </div>
+      </div>
+      <div class="channel-grid">
+        <div class="channel channel-wide">
+          <div class="channel-tag">Existing · Primary channels</div>
+          <h4>Global Social Channels</h4>
+          <ul>
+              <li>Distribution via established PFL/MVP Instagram, TikTok, Facebook &amp; YouTube handles globally</li>
+              <li>Three or more social posts per event, presented by Cloudbet</li>
+              <li>Cloudbet logo inclusion and tag on every post</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">Content strategy</div>
+          <h4>On-Ground Capture</h4>
+          <ul>
+              <li>Native video and photography from every MVP and PFL fight card worldwide</li><li>Tailored and custom highlights across every event</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">Content strategy</div>
+          <h4>Broadcast Tune-In</h4>
+          <ul>
+              <li>Tune-in CTAs across all content, driving traffic to the Sky Sports, talkSPORT and YouTube feeds</li>
+          </ul>
+        </div>
+        <div class="channel">
+          <div class="channel-tag">Content strategy</div>
+          <h4>Sign-Up Conversion</h4>
+          <ul>
+              <li>Direct sign-up CTAs capturing fans in-platform</li>
+          </ul>
+        </div>
+      </div>
+  </section>
+
+  <section class="panel" data-tab="commercials">
     <div class="panel-head">
       <h1>Commercial <span>Terms</span></h1>
       <div class="standfirst">Partnership framework and full asset schedule · 2027-2028</div>
@@ -450,7 +855,7 @@ body:not(.editing) .edit-only { display: none !important; }
 
 <script>
 (function () {
-  var BUILD = "dmufkb6w0";
+  var BUILD = "caf75d99e2c";
   var KEY = 'mvp-cloudbet-doc-v1';
   var sheet = document.getElementById('sheet');
   var flag = document.getElementById('savedFlag');
@@ -542,6 +947,12 @@ body:not(.editing) .edit-only { display: none !important; }
   function currentDocument() {
     var clone = document.documentElement.cloneNode(true);
 
+    // Always ship opening on the first tab, whatever is on screen here.
+    var ts = Array.prototype.slice.call(clone.querySelectorAll('.tab'));
+    ts.forEach(function (el, i) { el.setAttribute('aria-selected', String(i === 0)); });
+    var ps = Array.prototype.slice.call(clone.querySelectorAll('.panel'));
+    ps.forEach(function (el, i) { el.classList.toggle('is-active', i === 0); });
+
     // Always ship with edit mode off, whatever is on screen here.
     var b = clone.querySelector('body');
     if (b) { b.classList.remove('editing'); if (!b.className) b.removeAttribute('class'); }
@@ -574,6 +985,35 @@ body:not(.editing) .edit-only { display: none !important; }
     a.click();
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 0);
   });
+
+  // Tab switching. The active tab is remembered alongside the edits so a
+  // refresh returns to where the person was.
+  // Stamped with the build so a rebuild returns to the default tab
+  // rather than reopening wherever the last build was left.
+  var TABKEY = KEY + ':tab:' + BUILD;
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  function show(name) {
+    tabs.forEach(function (t) {
+      t.setAttribute('aria-selected', String(t.dataset.tab === name));
+    });
+    panels.forEach(function (p) {
+      p.classList.toggle('is-active', p.dataset.tab === name);
+    });
+    try { localStorage.setItem(TABKEY, name); } catch (e) {}
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.dataset.tab); });
+  });
+
+  var startTab = 'audience';
+  try { startTab = localStorage.getItem(TABKEY) || startTab; } catch (e) {}
+  if (!panels.some(function (p) { return p.dataset.tab === startTab; })) {
+    startTab = 'audience';
+  }
+  show(startTab);
 
 })();
 </script>

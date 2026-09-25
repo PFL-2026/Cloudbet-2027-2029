@@ -331,9 +331,7 @@ body:not(.editing) .edit-only { display: none !important; }
   .tabs { display: none !important; }
   .chart { break-inside: avoid; }
   .chart figcaption { font-size: 8pt; }
-  /* A PDF should carry the whole document, not just whichever tab is open. */
-  .panel { display: block !important; }
-  .panel + .panel { break-before: page; padding-top: 0; }
+  /* A PDF carries only the tab it is printed from (inactive panels stay hidden). */
   .metric-row, .channel-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .channel-grid-2 { grid-template-columns: repeat(2, 1fr); }
   .metric, .channel, .demo-block { break-inside: avoid; padding: 8px 10px; }
@@ -799,7 +797,7 @@ body:not(.editing) .edit-only { display: none !important; }
 
 <script>
 (function () {
-  var BUILD = "dmugprxz2";
+  var BUILD = "c1ed98f000a";
   var KEY = 'mvp-cloudbet-doc-v1';
   var sheet = document.getElementById('sheet');
   var flag = document.getElementById('savedFlag');
